@@ -3,36 +3,70 @@
 @include mq.on-desk {
   .people {
     display: flex;
-    // grid-template-columns: repeat(2, 1fr);
     gap: var(--space-gutter);
     flex-wrap: wrap;
   }  
+  .searchWrapper {
+    position: fixed;
+    right: var(--space-outer);
+    top: calc(.25 * var(--space-outer));
+    z-index: 3;
+    height: 6vw;
+    display: flex;
+    align-items: center;
+  }
+  .peoplesearch {
+    min-width: 320px;
+    padding: 18px;
+    font-size: calc(.9 * var(--font-size-base));
+    border: none;
+    border-radius: 4px;
+    font-family: 'AvenirNext LT Pro', sans-serif;
+    text-indent: 33px;
+    color: var(--color-brand-blue);
+    background-image: url('/icon-magnifying-glass.svg');
+    background-repeat: no-repeat;
+    background-position: 18px 50%;
+    background-size: 23px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  
+    &::placeholder {
+      color: #88A;
+    }
+  
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
-.peoplesearch {
-  min-width: 320px;
-  padding: 18px;
-  font-size: calc(.9 * var(--font-size-base));
-  position: fixed;
-  right: var(--space-outer);
-  top: calc(.7 * var(--space-outer));
-  border: none;
-  border-radius: 4px;
-  z-index: 3;
-  font-family: 'AvenirNext LT Pro', sans-serif;
-  color: var(--color-brand-blue);
-  background-image: url('/icon-magnifying-glass.svg');
-  background-repeat: no-repeat;
-  background-position: 18px 50%;
-  background-size: 23px;
-  text-indent: 33px;
-  color: var(--color-brand-blue);
-
-  &::placeholder {
-    color: #88A;
-  }
-
-  &:focus {
-    outline: none;
+@include mq.on-mob {
+  
+  .peoplesearch {
+    width: 100%;
+    padding: 18px;
+    font-size: calc(.9 * var(--font-size-base));
+    border: none;
+    border-radius: 4px;
+    position: relative;
+    z-index: 3;
+    font-family: 'AvenirNext LT Pro', sans-serif;
+    color: var(--color-brand-blue);
+    background-image: url('/icon-magnifying-glass.svg');
+    background-repeat: no-repeat;
+    background-position: 18px 50%;
+    background-size: 23px;
+    text-indent: 33px;
+    color: var(--color-brand-blue);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: var(--space-gutter);
+  
+    &::placeholder {
+      color: #88A;
+    }
+  
+    &:focus {
+      outline: none;
+    }
   }
 }

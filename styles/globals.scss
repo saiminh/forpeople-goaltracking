@@ -43,7 +43,7 @@
   
   @include mq.on-mob {
     --space-outer: 20px;
-    --space-gutter: 0;
+    --space-gutter: 10px;
     --font-size-base-min: 16px; 
     --font-size-base-ideal: 4.25vw; 
     --font-size-base-max: 36px; 

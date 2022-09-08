@@ -37,13 +37,15 @@ export default function Home() {
         <title>Goal tracking for people</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <input 
-        type="text" 
-        id="peoplesearch" 
-        placeholder="Search by name, title or goals"
-        onKeyUp={searchInput} 
-        className={styles.peoplesearch}
-      />
+      <div className={styles.searchWrapper}>
+        <input 
+          type="text" 
+          id="peoplesearch" 
+          placeholder="Search by name, title or goals"
+          onKeyUp={searchInput} 
+          className={styles.peoplesearch}
+        />
+      </div>
       <div className={styles.people}>
         {data.map((person, index) => {
           return (
