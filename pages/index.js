@@ -25,8 +25,8 @@ export default function Home() {
   function searchInput(e){
     const allPeople = Array.from(document.querySelectorAll('[class^="PersonCard_person__"]'));
     allPeople.forEach(person => person.classList.remove("hidden"));
-    const query = e.target.value;
-    const filteredPeople = allPeople.filter(person => !person.innerHTML.includes(query));
+    const query = e.target.value.toLowerCase();
+    const filteredPeople = allPeople.filter(person => !person.innerHTML.toLowerCase().includes(query));
     // console.log(filteredPeople.length);
     filteredPeople.forEach(person => person.classList.add("hidden"));
   }
