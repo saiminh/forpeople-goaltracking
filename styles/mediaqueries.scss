@@ -1,0 +1,20 @@
+@mixin on-mob {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+@mixin on-desk {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+@mixin only-touch {
+  @media (pointer: coarse) {
+    @content;
+  }
+}
+@mixin no-touch {
+  @media (pointer: fine) {
+    @content;
+  }
+}

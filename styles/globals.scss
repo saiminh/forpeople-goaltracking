@@ -1,0 +1,184 @@
+@use 'mediaqueries' as mq;
+
+:root {
+  --color-bodybg: #F6F4F1;
+  --color-brand-blue: #001489;
+  --color-brand-yellow: #ffc600;
+  --space-outer: 40px;
+  --space-gutter: 20px; 
+
+  --font-size-base-min: 20px;
+  --font-size-base-ideal: 1.38vw;
+  --font-size-base-max: 30px;
+
+  --font-size-base: clamp(
+    var(--font-size-base-min), 
+    var(--font-size-base-ideal), 
+    var(--font-size-base-max)
+  );
+  --font-size-s: clamp(
+    calc( 0.75 * var(--font-size-base-min)), 
+    calc( 0.75 * var(--font-size-base-ideal)), 
+    calc( 0.75 * var(--font-size-base-max))
+  );
+  --font-size-m: clamp(
+    calc( 1.5 * var(--font-size-base-min)), 
+    calc( 1.5 * var(--font-size-base-ideal)), 
+    calc( 1.5 * var(--font-size-base-max))
+  );
+  --font-size-l: clamp(
+    calc( 2 * var(--font-size-base-min)), 
+    calc( 2 * var(--font-size-base-ideal)), 
+    calc( 2 * var(--font-size-base-max))
+  );
+  --font-size-xl: clamp(
+    calc( 2.5 * var(--font-size-base-min)), 
+    calc( 2.5 * var(--font-size-base-ideal)), 
+    calc( 2.5 * var(--font-size-base-max))
+  );
+
+  --vh: 1vh;
+
+  --ease-cb: cubic-bezier(0.820, 0.065, 0.220, 0.910);
+  
+  @include mq.on-mob {
+    --space-outer: 20px;
+    --space-gutter: 0;
+    --font-size-base-min: 16px; 
+    --font-size-base-ideal: 4.25vw; 
+    --font-size-base-max: 36px; 
+  }
+}
+ 
+@font-face {
+  font-family: 'AvenirNext LT Pro';
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+000-5FF; /* Download only latin glyphs */  
+  src: local('Avenir Next, Avenir'),
+       url('/fonts/avenirnextltpro-regular-webfont.woff2') format('woff2'),
+       url('/fonts/avenirnextltpro-regular-webfont.woff') format('woff');
+}
+* {
+  box-sizing: border-box;
+}
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: 'AvenirNext LT Pro', sans-serif;
+  font-weight: 400;
+  text-align: left;
+  font-size: var(--font-size-base);
+  line-height: 1.1;
+  color: var(--color-brand-blue);
+  background-color: var(--color-bodybg) ;
+}
+
+.layout {
+  margin: 0 var(--space-outer);
+}
+
+
+@include mq.on-desk {
+  .content-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    padding-left: var(--space-outer);
+    padding-right: var(--space-outer);
+  }
+}
+@include mq.on-mob {
+  .content-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: calc(var(--vh, 1vh) * 100);
+    scroll-snap-type: y mandatory;
+    padding-left: var(--space-outer);
+    padding-right: var(--space-outer);
+  }
+}
+h1, h2, h3, h4 {
+  font-weight: 300;
+  margin: 1em 0 .5em 0;
+  line-height: 1.1;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+h1 {
+  font-size: var(--font-size-xl);
+  max-width: 12em;
+}
+h2 {
+  font-size: var(--font-size-l);
+  max-width: 12em;
+}
+.page-headline {
+  padding-top: 2.5em;
+  margin-bottom: 3em;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+p a:hover {
+  text-decoration: underline;
+}
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+li {
+  margin-left: 1em;
+  padding: 0;
+}
+li p {
+  margin-left: 0;
+  margin-right: 0;
+}
+* {
+  box-sizing: border-box;
+}
+.builder-block {
+  margin-top: 0 !important;
+  text-align: left!important;
+}
+picture, figure {
+  margin: 0;
+  padding: 0;
+}
+picture img {
+  width: 100%;
+  height: 100%;
+}
+.col-2 {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-gutter);
+  justify-content: space-between;
+  margin: 2em auto;
+  
+  @include mq.on-mob {
+    display: block;
+  }
+}
+.col-2 div {
+  flex: 0 1 50%;
+}
+
+.hidden {
+  display: none!important;
+}
