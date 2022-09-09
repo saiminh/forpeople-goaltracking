@@ -13,6 +13,7 @@
     z-index: 3;
     height: 6vw;
     display: flex;
+    gap: 1em;
     align-items: center;
   }
   .peoplesearch {
@@ -37,6 +38,20 @@
     &:focus {
       outline: none;
     }
+  }
+
+  .showall {
+    cursor: pointer;
+  }
+  .showall_status {
+    font-size: var(--font-size-s);
+    margin: 0 .5em 0 0;
+    position: relative;
+    top: -.25em;
+  }
+  .showall_clear {
+    width: var(--font-size-base);
+    fill: var(--color-brand-blue);
   }
 }
 
@@ -68,5 +83,18 @@
     &:focus {
       outline: none;
     }
+  }
+  .showall {
+    cursor: pointer;
+  }
+  .showall_status {
+    font-size: var(--font-size-s);
+    margin: 0 .5em 0 0;
+    position: relative;
+    top: -.25em;
+  }
+  .showall_clear {
+    width: var(--font-size-base);
+    fill: var(--color-brand-blue);
   }
 }
