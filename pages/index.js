@@ -101,7 +101,7 @@ export default function Home() {
           className={styles.peoplesearch}
         />
       </div>
-      <div className={styles.people}>
+      <div className={isLoading ? `${styles.contentLoading} ${styles.people}` : `${styles.contentLoaded} ${styles.people}`}>
         { isLoading ?
           <p>Loading...</p> :
           

@@ -1,15 +1,24 @@
 import styles from './PersonCard.module.scss';
 import Image from 'next/image';
+import { useState } from 'react';
 
 export default function PersonCard({ person }) {
+
+  const [imageReady, setImageReady] = useState(false)
+
+  function imageLoadedCallback(){
+    setImageReady(true)
+  }
+
   return (
     <div className={styles.person} id={person["Name"].toLowerCase().replace(/\s/g, '-')}>
     <div className={styles.personID}>
-      <div className={styles.person_image}>
+      <div className={`${styles.person_image} ${imageReady ? styles.imgLoaded : styles.imgLoading}`}>
         <Image 
           alt={`Picture of ${person["Name"]}`} 
           src={person["Image URL"]} 
           layout="fill" 
+          onLoadingComplete={imageLoadedCallback}
         />
       </div>
       <p className={styles.person_name}>{person["Name"]}</p>

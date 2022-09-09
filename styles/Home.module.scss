@@ -1,5 +1,14 @@
 @use './mediaqueries.scss' as mq;
 
+.contentLoading {
+  opacity: 0;
+  transition: all .3s ease-in-out;
+}
+.contentLoaded {
+  opacity: 1;
+  transition: all .3s ease-in-out;
+}
+
 @include mq.on-desk {
   .people {
     display: flex;
