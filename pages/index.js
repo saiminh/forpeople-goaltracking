@@ -45,17 +45,69 @@ export default function Home() {
     }
   }
 
+  function cleanUpMarkers(){
+    const allMarkers = Array.from(document.getElementsByTagName('mark'));
+    allMarkers.forEach((marker) => {
+      const text = marker.innerText
+      marker.replaceWith(text)
+    })
+  }
+
   function searchInput(e){
 
-    const allPeople = Array.from(document.querySelectorAll('[class^="PersonCard_person__"]'));
     const query = e.target.value.toLowerCase();
-    const filteredPeople = allPeople.filter(person => !person.innerHTML.toLowerCase().includes(query));
+
+    let allPeople = Array.from(document.querySelectorAll('[class^="PersonCard_person__"]'));
+    cleanUpMarkers();
     
-    allPeople.forEach(person => person.classList.remove("hidden"));
+    const filteredPeople = allPeople.filter(person => !person.innerText.toLowerCase().includes(query));
+    const selectedPeople = allPeople.filter(person => person.innerText.toLowerCase().includes(query));
     
-    filteredPeople.forEach(person => person.classList.add("hidden"));
     
-    setHiddenInfo(filteredPeople.length);
+    selectedPeople.forEach((person) => {
+      let name = person.querySelector('[class^="PersonCard_person_name"]').innerHTML;
+      let cleanName = name.replaceAll('<mark>', '').replaceAll('</mark>', ''); 
+      let title = person.querySelector('[class^="PersonCard_person_jobtitle"]').innerHTML;
+      let cleanTitle = title.replaceAll('<mark>', '').replaceAll('</mark>', ''); 
+      let goals = Array.from(person.querySelectorAll('.personGoals_goal_text'));
+      let cleanGoals = goals.map((goal) => {
+        goal.innerHTML = goal.innerHTML.replaceAll('<mark>', '').replaceAll('</mark>', '');
+        return goal;
+      });
+      
+      cleanGoals.forEach((goal) => {
+        let posGoal = goal.innerHTML.toLowerCase().indexOf(query);
+        if (posGoal > -1) {
+          let newGoal = goal.innerHTML.substring(0, posGoal) + '<mark>' + goal.innerHTML.substring(posGoal, posGoal + query.length) + '</mark>' + goal.innerHTML.substring(posGoal + query.length);
+          goal.innerHTML = newGoal;
+        }
+      })
+      
+      let posTitle = cleanTitle.toLowerCase().indexOf(query);
+      if (posTitle > -1){
+        let newTitle = cleanTitle.substring(0, posTitle) + '<mark>' + cleanTitle.substring(posTitle, posTitle + query.length) + '</mark>' + cleanTitle.substring(posTitle + query.length);
+        person.querySelector('[class^="PersonCard_person_jobtitle"]').innerHTML = newTitle;
+      }
+
+      let posName = cleanName.toLowerCase().indexOf(query);
+      if (posName > -1){
+        let newName = cleanName.substring(0, posName) + '<mark>' + cleanName.substring(posName, posName + query.length) + '</mark>' + cleanName.substring(posName + query.length);
+        person.querySelector('[class^="PersonCard_person_name"]').innerHTML = newName;
+      }
+    })
+
+    
+    allPeople.forEach(person => {
+      person.classList.remove("hidden");
+    });
+    
+    if (query.length > 0) {
+      filteredPeople.forEach(person => person.classList.add("hidden"));
+      setHiddenInfo(filteredPeople.length);
+    } else {
+      setHiddenInfo(0);
+      cleanUpMarkers();
+    }
   }
 
   function showAll(){
@@ -67,6 +119,8 @@ export default function Home() {
     searchBar.value = "";
 
     setHiddenInfo(0); 
+    
+    cleanUpMarkers();
 
     //remove hash from URL
     const currentURL = window.location.href;
