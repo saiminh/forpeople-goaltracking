@@ -182,3 +182,9 @@ picture img {
 .hidden {
   display: none!important;
 }
+
+mark {
+  background-color: var(--color-brand-yellow);
+  padding: .1em .1em 0 .1em;
+  border-radius: 3px;
+}

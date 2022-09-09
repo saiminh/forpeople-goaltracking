@@ -25,10 +25,22 @@ export default function PersonCard({ person }) {
       <p className={styles.person_jobtitle}>{person["Job title"]}</p>
     </div>
     <div className={styles.personGoals}>
-      <p className={styles.personGoals_goal}><span className={styles.personGoals_goal_numbering}>01—</span>{person["Goal 1"]}</p>
-      <p className={styles.personGoals_goal}><span className={styles.personGoals_goal_numbering}>02—</span>{person["Goal 2"]}</p>
-      <p className={styles.personGoals_goal}><span className={styles.personGoals_goal_numbering}>03—</span>{person["Goal 3"]}</p>
-      <p className={styles.personGoals_goal}><span className={styles.personGoals_goal_numbering}>04—</span>{person["Goal 4"]}</p>
+      <p className={styles.personGoals_goal}>
+        <span className={styles.personGoals_goal_numbering}>01—</span>
+        <span className='personGoals_goal_text'>{person["Goal 1"]}</span>
+      </p>
+      <p className={styles.personGoals_goal}>
+        <span className={styles.personGoals_goal_numbering}>02—</span>
+        <span className='personGoals_goal_text'>{person["Goal 2"]}</span>
+      </p>
+      <p className={styles.personGoals_goal}>
+        <span className={styles.personGoals_goal_numbering}>03—</span>
+        <span className='personGoals_goal_text'>{person["Goal 3"]}</span>
+      </p>
+      <p className={styles.personGoals_goal}>
+        <span className={styles.personGoals_goal_numbering}>04—</span>
+        <span className='personGoals_goal_text'>{person["Goal 4"]}</span>
+      </p>
     </div>
   </div>
   )
