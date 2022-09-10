@@ -160,3 +160,14 @@
     flex: 0 0 360px;
   }
 }
+
+.personPin {
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  right: 5px;
+  color: #FFF;
+  background-color: var(--color-brand-blue);
+  font-size: calc(var(--font-size-base) * .66);
+  padding: .5em .7em .25em .7em; 
+}
