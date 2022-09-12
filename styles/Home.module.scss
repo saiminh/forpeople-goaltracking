@@ -14,13 +14,12 @@
   top: 5px;
   right: 5px;
   color: #FFF;
-  background-color: var(--color-brand-blue);
+  background-color: #cbcfe7;
   font-size: calc(var(--font-size-base) * .66);
   padding: .5em .7em .25em .7em; 
-  border-radius: 3px;
-  opacity: .2;
+  border-radius: 50%;
   &:hover {
-    opacity: 1;
+    background-color: var(--color-brand-blue);
   }
 }
 

@@ -2,12 +2,11 @@
 
 @include mq.on-desk {
   .person {
+    position: relative;
     display: flex;
     gap: var(--space-gutter);
     background-color: #FFF;
     padding: var(--space-gutter);
-    transition: all .3s ease-in-out;
-    transform: scale(1);
     flex: 0 0 calc(50% - 0.5 * var(--space-gutter));
   }
 
@@ -23,17 +22,17 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--color-brand-blue);
+    background-color: #000;
 
     & img {
       object-fit: cover;
-      filter: grayscale(100%);
-      mix-blend-mode: luminosity;
-      opacity: 0;
+      // filter: grayscale(100%);
+      // mix-blend-mode: luminosity;
+      opacity: 0.8;
       transition: all .3s ease-in-out;
     }
     &.imgLoaded img {
-      opacity: 0.8!important;
+      opacity: 0.6!important;
     }
   }
   .person_jobtitle {
@@ -78,13 +77,12 @@
 
 @include mq.on-mob {
   .person {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: var(--space-outer);
     background-color: #FFF;
     padding: var(--space-outer);
-    transition: all .3s ease-in-out;
-    transform: scale(1);
     flex: 0 0 calc(50% - 0.5 * var(--space-gutter));
     margin-bottom: var(--space-gutter);
   }
@@ -159,15 +157,4 @@
   .personID {
     flex: 0 0 360px;
   }
-}
-
-.personPin {
-  position: absolute;
-  z-index: 1;
-  top: 5px;
-  right: 5px;
-  color: #FFF;
-  background-color: var(--color-brand-blue);
-  font-size: calc(var(--font-size-base) * .66);
-  padding: .5em .7em .25em .7em; 
 }

@@ -179,9 +179,6 @@ picture img {
   flex: 0 1 50%;
 }
 
-.hidden {
-  display: none!important;
-}
 
 mark {
   background-color: var(--color-brand-yellow);
@@ -189,21 +186,54 @@ mark {
   border-radius: 3px;
 }
 
-.personPin {
-  position: absolute;
-  z-index: 4;
-  top: 5px;
-  right: 5px;
-  color: #FFF;
-  background-color: var(--color-brand-blue);
-  font-size: calc(var(--font-size-base) * .66);
-  padding: .5em .7em .25em .7em; 
+.person {
+  visibility: visible;
+  transform: translateY(0);
+  opacity: 0;
+  animation: enterPerson .5s var(--ease-cb) forwards;
 }
 
-.pinnedPerson [class^="Home_contentLoaded__"] {
+@keyframes enterPerson {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@for $i from 1 through 4 {
+  .person:nth-child(#{$i}) {
+    animation-delay: .05s * $i;
+  }
+}
+
+.personIsPinned .person {
+  animation: pinPerson .3s var(--ease-cb) forwards;
+}
+
+@keyframes pinPerson {
+  0% {
+    transform: translateY(40px);
+    visibility: hidden;
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.person.hidden {
+  display: none!important;
+}
+
+.personIsPinned [class^="Home_contentLoaded__"] {
   justify-content: center;
 }
 
-// .pinned[class^="PersonCard_person__"]{
-// //  flex-basis: 60%;
-// }

@@ -11,7 +11,7 @@ export default function PersonCard({ person, children }) {
   }
 
   return (
-    <div className={styles.person} id={person["Name"].toLowerCase().replace(/\s/g, '-')}>
+    <div className={`${styles.person} person`} id={person["Name"].toLowerCase().replace(/\s/g, '-')}>
       <div className={styles.personID}>
         <div className={`${styles.person_image} ${imageReady ? styles.imgLoaded : styles.imgLoading}`}>
           <Image 

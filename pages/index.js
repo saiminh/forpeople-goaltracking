@@ -22,41 +22,53 @@ export default function Home() {
         totalAmountOfPeople.current = data.length
       })
       .then(() => { 
-        hashChangeHandler()
-        window.addEventListener('hashchange', () => { hashChangeHandler() })
+        window.addEventListener('hashchange', () => { hashChangeHandler() });
+      })
+      .then(() => { 
+        setTimeout(hashChangeHandler, 100);        
       })
   }, [])
   
   function hashChangeHandler(){
-
+    console.log('Hashchanhe@@@');
     const currentURL = window.location.href;
-    // if there's a hash #all in the URL with a name, show all people
-    if (currentURL.includes('#all')) {
+
+    if (currentURL.includes('#all') || !currentURL.includes('#')) {
+      // if there's a hash #all in the URL with a name, or no hash, show all people
       const allPeople = document.querySelectorAll('[class^="PersonCard_person__"]');
       allPeople.forEach((person) => {
         person.classList.remove('hidden');
       })
       setNumOfHiddenPeople(0);
-    } else if (currentURL.includes('#')) {
+    } 
+    else if (currentURL.includes('#')) {
        // if there's a hash in the URL with a name, hide everyone but that person
       const anchor = currentURL.slice(currentURL.indexOf("#"));
       const target = document.querySelector(anchor);
       const allPeople = document.querySelectorAll('[class^="PersonCard_person__"]');
-      if (target) {
+      
+      if (target) { //if the person exists
         allPeople.forEach((person) => {
           person.classList.add("hidden");
         })
         target.classList.remove("hidden");
         setNumOfHiddenPeople(document.querySelectorAll('.hidden').length);
+        cleanUpMarkers();
+        const searchBar = document.querySelector('#peoplesearch');
+        searchBar.value = "";
+      } 
+      else {
+        console.log('no target');
       }
     }
+    
   }
 
   function cleanUpMarkers(){
 
     const allMarkers = Array.from(document.getElementsByTagName('mark'));
     allMarkers.forEach((marker) => {
-      const text = marker.innerText
+      const text = marker.innerHTML
       marker.replaceWith(text)
     })
   }
@@ -120,7 +132,7 @@ export default function Home() {
   }
   
   return (
-    <Layout extraClass={totalAmountOfPeople.current-numOfHiddenPeople > 1 ? `` : `pinnedPerson`}>
+    <Layout extraClass={totalAmountOfPeople.current-numOfHiddenPeople > 1 ? `` : `personIsPinned`}>
       <Head>
         <title>Goal tracking for people</title>
         <link rel="icon" href="/favicon.ico" />
