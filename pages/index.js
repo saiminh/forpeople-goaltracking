@@ -41,10 +41,6 @@ export default function Home() {
        // if there's a hash in the URL with a name, hide everyone but that person
       const anchor = currentURL.slice(currentURL.indexOf("#"));
       const target = document.querySelector(anchor);
-      if (!target) {
-        alert( anchor + ' not found' );
-        return false;
-      }
       const allPeople = document.querySelectorAll('[class^="PersonCard_person__"]');
       if (target) {
         allPeople.forEach((person) => {
