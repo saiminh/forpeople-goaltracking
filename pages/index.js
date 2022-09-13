@@ -12,6 +12,41 @@ export default function Home() {
   let totalAmountOfPeople = useRef(0)
 
   useEffect(() => {
+
+    const hashChangeHandler = function(){
+      console.log('Hashchanhe@@@');
+      const currentURL = decodeURI(window.location.href);
+
+      if (currentURL.includes('#all') || !currentURL.includes('#')) {
+        // if there's a hash #all in the URL with a name, or no hash, show all people
+        const allPeople = document.querySelectorAll('[class^="PersonCard_person__"]');
+        allPeople.forEach((person) => {
+          person.classList.remove('hidden');
+        })
+        setNumOfHiddenPeople(0);
+      } 
+      else if (currentURL.includes('#')) {
+         // if there's a hash in the URL with a name, hide everyone but that person
+        const anchor = currentURL.slice(currentURL.indexOf("#"));
+        const target = document.querySelector(anchor);
+        const allPeople = document.querySelectorAll('[class^="PersonCard_person__"]');
+      
+        if (target) { //if the person exists
+          allPeople.forEach((person) => {
+            person.classList.add("hidden");
+          })
+          target.classList.remove("hidden");
+          setNumOfHiddenPeople(document.querySelectorAll('.hidden').length);
+          cleanUpMarkers();
+          const searchBar = document.querySelector('#peoplesearch');
+          searchBar.value = "";
+        } 
+        else {
+          console.log('no target');
+        }
+      }
+    }
+
     setLoading(true)
     fetch('https://opensheet.elk.sh/1B0DTrFzxg7ttRnOXXBjsVKyDJA_N0YGW-WYKeZZgl-o/Sheet1')
       .then((res) => res.json())
@@ -29,40 +64,6 @@ export default function Home() {
       })
   }, [])
   
-  function hashChangeHandler(){
-    console.log('Hashchanhe@@@');
-    const currentURL = window.location.href;
-
-    if (currentURL.includes('#all') || !currentURL.includes('#')) {
-      // if there's a hash #all in the URL with a name, or no hash, show all people
-      const allPeople = document.querySelectorAll('[class^="PersonCard_person__"]');
-      allPeople.forEach((person) => {
-        person.classList.remove('hidden');
-      })
-      setNumOfHiddenPeople(0);
-    } 
-    else if (currentURL.includes('#')) {
-       // if there's a hash in the URL with a name, hide everyone but that person
-      const anchor = currentURL.slice(currentURL.indexOf("#"));
-      const target = document.querySelector(anchor);
-      const allPeople = document.querySelectorAll('[class^="PersonCard_person__"]');
-      
-      if (target) { //if the person exists
-        allPeople.forEach((person) => {
-          person.classList.add("hidden");
-        })
-        target.classList.remove("hidden");
-        setNumOfHiddenPeople(document.querySelectorAll('.hidden').length);
-        cleanUpMarkers();
-        const searchBar = document.querySelector('#peoplesearch');
-        searchBar.value = "";
-      } 
-      else {
-        console.log('no target');
-      }
-    }
-    
-  }
 
   function cleanUpMarkers(){
 
