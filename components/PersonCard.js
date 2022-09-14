@@ -19,6 +19,7 @@ export default function PersonCard({ person, children }) {
             src={person["Image URL"]} 
             layout="fill" 
             onLoadingComplete={imageLoadedCallback}
+            sizes="(max-width: 768px) calc(100vw - 40px), 25vw"
           />
         </div>
         <p className={styles.person_name}>{person["Name"]}</p>
